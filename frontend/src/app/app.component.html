@@ -1,0 +1,71 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>
+      <a href="https://github.com/amalg989/school-listing" target="blank">
+          <mat-icon svgIcon="github" aria-hidden="false" aria-label="GitHub"></mat-icon>        
+      </a>
+    </span>
+    <mat-icon svgIcon="school" aria-hidden="false" aria-label="School Icon"></mat-icon>
+    <span>{{title}}</span>
+    <p>Developed by <a href="https://www.linkedin.com/in/amalgamage" target="blank">Amal Gamage</a></p>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<button class="fab-btn" mat-fab aria-label="Add More School" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+</button>
+
+<content class="menu-header">
+  <div fxLayout="row">
+    <div class="container">
+      <div fxLayout="column" fxFlex="10" fxLayoutAlign="center" >
+        <span>Filters: </span>
+      </div>
+      <div fxLayout="column" fxFlex="33" style="padding: 1px 10px;" fxLayoutAlign="center">
+        <mat-form-field appearance="fill">
+          <mat-label>School Name</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxFlex="33" style="padding: 1px 10px;" fxLayoutAlign="center">
+        <mat-form-field appearance="fill">
+          <mat-label>Address</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxFlex="33" style="padding: 1px 10px;" fxLayoutAlign="center">
+        <mat-form-field appearance="fill">
+          <mat-label>Number of Students</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let ranges of ranges" [value]="ranges.value" fxLayoutAlign="center">
+              {{ranges.displayValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</content>
+
+<content class="school-lists">
+  <div class="container">
+    <mat-list>
+      <mat-list-item *ngFor="let school of schools">
+          <mat-card>
+            <div fxLayout="row">
+              <div fxLayout="column" fxFlex="33" fxLayoutAlign="center">
+                  <h2>{{school.schoolName}}</h2>
+              </div>
+              <div fxLayout="column" fxFlex="33" fxLayoutAlign="center">
+                  <h4>{{school.numberOfStudents}}</h4>
+              </div>
+              <div fxLayout="column" fxFlex="33" fxLayoutAlign="center">
+                  <h4>{{school.address.displayName}}</h4>
+              </div>
+            </div>
+          </mat-card>
+      </mat-list-item>
+    </mat-list> 
+  </div>
+</content>
+

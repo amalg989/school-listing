@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Add New School</h1>
+<br />
+<div mat-dialog-content>
+  <div fxLayout="row">
+      <mat-form-field appearance="fill">
+          <mat-label>School Name</mat-label>
+        <input matInput [(ngModel)]="school.schoolName">
+      </mat-form-field>
+  </div>
+  <div fxLayout="row">
+      <mat-form-field appearance="fill">
+          <mat-label>Street Name</mat-label>
+        <input matInput [(ngModel)]="school.address.street">
+      </mat-form-field>
+  </div>
+  <div fxLayout="row">
+      <mat-form-field appearance="fill" style="margin-right: 2px;">
+          <mat-label>Suburb</mat-label>
+        <input matInput [(ngModel)]="school.address.suburb">
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-left: 2px;">
+          <mat-label>Postcode</mat-label>
+        <input matInput [(ngModel)]="school.address.postcode">
+      </mat-form-field>
+  </div>
+  <div fxLayout="row">
+      <mat-form-field appearance="fill">
+          <mat-label>State</mat-label>
+        <input matInput [(ngModel)]="school.address.street">
+      </mat-form-field>
+  </div>
+  <div fxLayout="row">
+      <mat-form-field appearance="fill">
+          <mat-label>Number of Students</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let ranges of ranges" [value]="ranges.value" fxLayoutAlign="center">
+              {{ranges.displayValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="school" mat-raised-button	>Add</button>
+</div>
