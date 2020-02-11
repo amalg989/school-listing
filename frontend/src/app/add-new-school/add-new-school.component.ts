@@ -3,6 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import School from '../../models/school';
+import Address from '../../models/address';
 import Ranges from '../../models/ranges';
 
 @Component({
@@ -32,22 +33,27 @@ export default class AddNewSchoolDialog {
 
   constructor(
     public dialogRef: MatDialogRef<AddNewSchoolDialog>,
-    @Inject(MAT_DIALOG_DATA) public school: School) {}
+    @Inject(MAT_DIALOG_DATA) public school) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onYesClick(): void {
-    console.log(this.form);
 
     if(this.form.valid) {
       this.school.name = this.form.value.schoolName;
-      this.school.address = {};
-      this.school.address.street = this.form.value.addressStreet;
-      this.school.address.suburb = this.form.value.addressSuburb;
-      this.school.address.postcode = this.form.value.addressPostcode;
-      this.school.address.state = this.form.value.addressState;
+
+      const address: Address = {
+        street: this.form.value.addressStreet,
+        suburb: this.form.value.addressSuburb,
+        postcode: this.form.value.addressPostcode,
+        state: this.form.value.addressState,
+        displayName: `${this.form.value.addressStreet}, ${this.form.value.addressState}`
+      };
+
+      this.school.address = address;
+      
       this.school.numberOfStudents = this.form.value.queryRange;
 
       this.dialogRef.close(this.school);   

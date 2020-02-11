@@ -35,13 +35,7 @@ export class AppComponent implements OnInit {
     queryRange: new FormControl('0')
   });
 
-  schools: School[] = [
-    {id: '0', schoolName: 'School Name', address: {street: '', suburb: '', postcode: '', state: '', displayName: 'Nashville, AU'}, numberOfStudents: this.displayRangeValue('1') },
-    {id: '1', schoolName: 'School Name', address: {street: '', suburb: '', postcode: '', state: '', displayName: ''}, numberOfStudents: '1'},
-    {id: '2', schoolName: 'School Name', address: {street: '', suburb: '', postcode: '', state: '', displayName: ''}, numberOfStudents: '1'},
-    {id: '3', schoolName: 'School Name', address: {street: '', suburb: '', postcode: '', state: '', displayName: ''}, numberOfStudents: '1'},
-    {id: '4', schoolName: 'School Name', address: {street: '', suburb: '', postcode: '', state: '', displayName: ''}, numberOfStudents: '1'},
-  ];
+  schools: School[] = [];
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public dialog: MatDialog, private schoolService: SchoolService) {
     iconRegistry.addSvgIcon(
@@ -87,14 +81,15 @@ export class AppComponent implements OnInit {
 
       this.schoolService
       .getAllSchools(this.queries.value.querySchoolName, this.queries.value.queryAddress, this.queries.value.queryRange)
-      .subscribe(result => {
+      .subscribe((result: School[]) => {
         console.log('getAllSchools response', result);
 
         if(result) {
           result.forEach(school => {
             this.schools.push({
-              id: school._id, 
+              id: (<any>school)._id, 
               schoolName: school.name, 
+              name: school.name, 
               address: {
                 street: school.address.street || '', 
                 suburb: school.address.suburb || '', 

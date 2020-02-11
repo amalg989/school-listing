@@ -17,7 +17,6 @@ export class SchoolController {
 
   @Post()
   async create(@Body() createSchoolDto: CreateSchoolDto) {
-    console.log('createSchoolDto', createSchoolDto)
     await this.schoolService.create(createSchoolDto);
   }
 
