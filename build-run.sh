@@ -7,6 +7,11 @@ docker run -d -p 8100:80 school-listing/frontend
 
 cd ..
 
+# Building Database
+cd database
+docker build -t school-listing/db .
+docker run -d -p 27018:27017 school-listing/db
+
 # Building Back-End
 cd backend
 npm install
