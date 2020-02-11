@@ -5,10 +5,19 @@ import { School } from './interfaces/school.interface';
 
 @Controller('schools')
 export class SchoolController {
-  constructor(private readonly schoolService: SchoolService) {}
+  constructor(private readonly schoolService: SchoolService) {
+    this.schoolService.findAll().then(res=> {
+      if(res && res.length > 0) {
+        return;
+      }
+
+      this.schoolService.create({"name":"New School","address":{"street":"168/6, Polwatta Road, Pamunuwa","suburb":"Maharagama","postcode":"10280","state":"Colombo"},"numberOfStudents": 1});      
+    })
+  }
 
   @Post()
   async create(@Body() createSchoolDto: CreateSchoolDto) {
+    console.log('createSchoolDto', createSchoolDto)
     await this.schoolService.create(createSchoolDto);
   }
 
@@ -34,11 +43,11 @@ export class SchoolController {
 
     let schools = await this.schoolService.findAll();
 
-    if(filters.byName) {
+    if(filters.byName && filters.byName !== '') {
       schools = schools.filter(school => school.name.indexOf(filters.byName) > -1);
     }
 
-    if(filters.byAddress) {
+    if(filters.byAddress && filters.byAddress !== '') {
       schools = schools.filter(school => `${school.address.street} ${school.address.suburb} ${school.address.postcode} ${school.address.state}`.indexOf(filters.byAddress) > -1);
     }
 

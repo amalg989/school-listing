@@ -17,7 +17,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import {SchoolService} from '../services/school.service';
 
 @NgModule({
   declarations: [
@@ -38,9 +40,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     MatListModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [SchoolService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

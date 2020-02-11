@@ -1,38 +1,39 @@
 <h1 mat-dialog-title>Add New School</h1>
 <br />
+<form [formGroup]="form">
 <div mat-dialog-content>
   <div fxLayout="row">
       <mat-form-field appearance="fill">
           <mat-label>School Name</mat-label>
-        <input matInput >
+        <input matInput  id="schoolName" name="schoolName" formControlName="schoolName" required>
       </mat-form-field>
   </div>
   <div fxLayout="row">
       <mat-form-field appearance="fill">
           <mat-label>Street Name</mat-label>
-        <input matInput >
+        <input matInput id="addressStreet" name="addressStreet" formControlName="addressStreet" required>
       </mat-form-field>
   </div>
   <div fxLayout="row">
       <mat-form-field appearance="fill" style="margin-right: 2px;">
           <mat-label>Suburb</mat-label>
-        <input matInput >
+        <input matInput id="addressSuburb" name="addressSuburb" formControlName="addressSuburb" required >
       </mat-form-field>
       <mat-form-field appearance="fill" style="margin-left: 2px;">
           <mat-label>Postcode</mat-label>
-        <input matInput >
+        <input matInput id="addressPostcode" name="addressPostcode" formControlName="addressPostcode" required >
       </mat-form-field>
   </div>
   <div fxLayout="row">
       <mat-form-field appearance="fill">
           <mat-label>State</mat-label>
-        <input matInput >
+        <input matInput id="addressState" name="addressState" formControlName="addressState" required >
       </mat-form-field>
   </div>
   <div fxLayout="row">
       <mat-form-field appearance="fill">
           <mat-label>Number of Students</mat-label>
-          <mat-select>
+          <mat-select  id="queryRange" name="queryRange" formControlName="queryRange" required >
             <mat-option *ngFor="let ranges of ranges" [value]="ranges.value" fxLayoutAlign="center">
               {{ranges.displayValue}}
             </mat-option>
@@ -40,7 +41,8 @@
         </mat-form-field>
   </div>
 </div>
+</form>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="school" mat-raised-button	>Add</button>
+  <button mat-button (click)="onYesClick()" mat-raised-button >Add</button>
 </div>

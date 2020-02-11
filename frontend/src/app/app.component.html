@@ -15,6 +15,7 @@
   <mat-icon>add</mat-icon>
 </button>
 
+<form [formGroup]="queries">
 <content class="menu-header">
   <div fxLayout="row">
     <div class="container">
@@ -24,19 +25,19 @@
       <div fxLayout="column" fxFlex="33" style="padding: 1px 10px;" fxLayoutAlign="center">
         <mat-form-field appearance="fill">
           <mat-label>School Name</mat-label>
-          <input matInput>
+          <input matInput id="querySchoolName" name="querySchoolName" formControlName="querySchoolName">
         </mat-form-field>
       </div>
       <div fxLayout="column" fxFlex="33" style="padding: 1px 10px;" fxLayoutAlign="center">
         <mat-form-field appearance="fill">
           <mat-label>Address</mat-label>
-          <input matInput>
+          <input matInput id="queryAddress" name="queryAddress" formControlName="queryAddress">
         </mat-form-field>
       </div>
       <div fxLayout="column" fxFlex="33" style="padding: 1px 10px;" fxLayoutAlign="center">
         <mat-form-field appearance="fill">
           <mat-label>Number of Students</mat-label>
-          <mat-select>
+          <mat-select id="queryRange" name="queryRange" formControlName="queryRange">
             <mat-option *ngFor="let ranges of ranges" [value]="ranges.value" fxLayoutAlign="center">
               {{ranges.displayValue}}
             </mat-option>
@@ -46,6 +47,7 @@
     </div>
   </div>
 </content>
+</form>
 
 <content class="school-lists">
   <div class="container">
