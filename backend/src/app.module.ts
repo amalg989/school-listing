@@ -8,7 +8,7 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27018/schoollistings', { useNewUrlParser: true }),
+    MongooseModule.forRoot('mongodb://mongo:27017/schoollistings', { useNewUrlParser: true }),
     SchoolModule
   ],
   controllers: [AppController],
